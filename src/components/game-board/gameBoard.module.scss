@@ -1,0 +1,28 @@
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.row {
+  align-items: center;
+  background-color: $color-white;
+  border-radius: 0.375rem;
+  border: 0.063rem solid $color-gray;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.8rem;
+}
+
+.numbers {
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  @include respond("sm") {
+    font-size: 1rem;
+  }
+}

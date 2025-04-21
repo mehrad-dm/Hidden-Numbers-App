@@ -1,0 +1,20 @@
+.inputRow {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0 1rem 0;
+
+  input {
+    border-radius: 0.375rem;
+    border: 0.125rem solid $color-accent;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    text-align: center;
+    width: 3.75rem;
+
+    @include respond("sm") {
+      font-size: 1rem;
+      width: 2.75rem;
+    }
+  }
+}
