@@ -1,0 +1,18 @@
+// Breakpoints
+$breakpoints: (
+  "sm": 30rem,
+  "md": 48rem,
+  "lg": 64rem,
+);
+
+// Usage: @include respond("sm") { ... }
+@mixin respond($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
+  }
+}
+
