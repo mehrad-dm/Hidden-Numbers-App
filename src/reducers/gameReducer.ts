@@ -1,5 +1,10 @@
 import { GameState, GameAction, Guess } from "../types";
-import { evaluateGuess, generateSecret, getFromStorage, setInStorage } from "../utils";
+import {
+  evaluateGuess,
+  generateSecret,
+  getFromStorage,
+  setInStorage,
+} from "../utils";
 
 const COIN_KEY = "totalCoins";
 
@@ -13,7 +18,10 @@ export const initialGameState = (): GameState => ({
   coins: getFromStorage<number>(COIN_KEY, 0),
 });
 
-export const gameReducer = (state: GameState, action: GameAction): GameState => {
+export const gameReducer = (
+  state: GameState,
+  action: GameAction,
+): GameState => {
   switch (action.type) {
     case "MAKE_GUESS": {
       if (state.isGameOver) return state;

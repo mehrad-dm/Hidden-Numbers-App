@@ -1,4 +1,4 @@
-export type FeedbackType = 'correct' | 'misplaced' | 'wrong';
+export type FeedbackType = "correct" | "misplaced" | "wrong";
 
 export interface Guess {
   numbers: number[];
@@ -16,5 +16,5 @@ export interface GameState {
 }
 
 export type GameAction =
-  | { type: 'MAKE_GUESS'; payload: number[] }
-  | { type: 'RESET_GAME' };
+  | { type: "MAKE_GUESS"; payload: number[] }
+  | { type: "RESET_GAME" };

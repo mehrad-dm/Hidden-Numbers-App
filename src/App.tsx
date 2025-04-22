@@ -10,14 +10,14 @@ import { gameReducer, initialGameState } from "./reducers/gameReducer";
 import { useGameControls } from "./hooks";
 
 const App: React.FC = () => {
-  const [state, dispatch] = useReducer(gameReducer, undefined, initialGameState);
+  const [state, dispatch] = useReducer(
+    gameReducer,
+    undefined,
+    initialGameState,
+  );
 
-  const {
-    currentGuess,
-    handleInputChange,
-    handleSubmit,
-    handleReset,
-  } = useGameControls(state, dispatch);
+  const { currentGuess, handleInputChange, handleSubmit, handleReset } =
+    useGameControls(state, dispatch);
 
   return (
     <main className="text-center">

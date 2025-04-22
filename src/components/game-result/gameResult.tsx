@@ -6,7 +6,11 @@ interface GameResultProps {
   onReset: () => void;
 }
 
-export const GameResult: React.FC<GameResultProps> = ({ win, secret, onReset }) => {
+export const GameResult: React.FC<GameResultProps> = ({
+  win,
+  secret,
+  onReset,
+}) => {
   return (
     <section>
       <h2>{win ? "🎉 You Win!" : "💀 Game Over"}</h2>

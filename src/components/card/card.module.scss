@@ -8,7 +8,9 @@
   font-weight: bold;
   height: $card-size;
   justify-content: center;
-  transition: transform $transition-speed, background-color $transition-speed;
+  transition:
+    transform $transition-speed,
+    background-color $transition-speed;
   width: $card-size;
 
   &.revealed {

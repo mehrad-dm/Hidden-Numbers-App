@@ -59,9 +59,19 @@
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-0.25rem); }
-  50% { transform: translateX(0.25rem); }
-  75% { transform: translateX(-0.125rem); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.25rem);
+  }
+  50% {
+    transform: translateX(0.25rem);
+  }
+  75% {
+    transform: translateX(-0.125rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

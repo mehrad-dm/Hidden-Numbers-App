@@ -4,7 +4,7 @@ import { playSound, triggerParticles } from "../utils";
 
 export const useGameControls = (
   state: GameState,
-  dispatch: React.Dispatch<GameAction>
+  dispatch: React.Dispatch<GameAction>,
 ) => {
   const [currentGuess, setCurrentGuess] = useState<number[]>([0, 0, 0]);
 

@@ -5,7 +5,10 @@ interface StatusPanelProps {
   coins: number;
 }
 
-export const StatusPanel: React.FC<StatusPanelProps> = ({ attemptsLeft, coins }) => {
+export const StatusPanel: React.FC<StatusPanelProps> = ({
+  attemptsLeft,
+  coins,
+}) => {
   return (
     <section className="mb-1">
       <p>Attempts Left: {attemptsLeft}</p>
