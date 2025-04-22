@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./card.module.scss";
 
-interface CardProps {
-  value?: number;
+export interface CardProps {
+  number: number | null;
   revealed: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ value, revealed }) => {
+export const Card: React.FC<CardProps> = ({ number, revealed }) => {
   return (
     <div className={`${styles.card} ${revealed ? styles.revealed : ""}`}>
-      <span>{revealed ? value : "?"}</span>
+      {revealed ? number : "?"}
     </div>
   );
 };

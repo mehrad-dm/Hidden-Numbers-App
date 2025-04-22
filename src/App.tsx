@@ -1,59 +1,31 @@
-import React, { useReducer, useState, useEffect } from "react";
-import { Card, InputRow, GameBoard } from "./components";
+import React, { useReducer } from "react";
+import {
+  CardList,
+  InputRow,
+  GameBoard,
+  StatusPanel,
+  GameResult,
+} from "./components";
 import { gameReducer, initialGameState } from "./reducers/gameReducer";
-import { playSound, triggerParticles } from "./utils";
+import { useGameControls } from "./hooks";
 
 const App: React.FC = () => {
-  const [state, dispatch] = useReducer(gameReducer, undefined, initialGameState);
-  const [currentGuess, setCurrentGuess] = useState<number[]>([0, 0, 0]);
+  const [state, dispatch] = useReducer(
+    gameReducer,
+    undefined,
+    initialGameState,
+  );
 
-  const handleInputChange = (value: number, index: number) => {
-    const updatedGuess = [...currentGuess];
-    updatedGuess[index] = value;
-    setCurrentGuess(updatedGuess);
-  };
-
-  const handleSubmit = () => {
-    if (currentGuess.length === 3) {
-      playSound("click");
-      dispatch({ type: "MAKE_GUESS", payload: currentGuess });
-      setCurrentGuess([0, 0, 0]);
-    }
-  };
-
-  const handleReset = () => {
-    dispatch({ type: "RESET_GAME" });
-  };
-
-  useEffect(() => {
-    if (!state.isGameOver) return;
-
-    if (state.win) {
-      playSound("win");
-      triggerParticles();
-    } else {
-      playSound("fail");
-    }
-  }, [state.isGameOver, state.win]);
+  const { currentGuess, handleInputChange, handleSubmit, handleReset } =
+    useGameControls(state, dispatch);
 
   return (
     <main className="text-center">
       <h1>🔐 Hidden Numbers</h1>
 
-      <section className="mb-1">
-        <p>Attempts Left: {state.attemptsLeft}</p>
-        <p>Total Coins: {state.coins}</p>
-      </section>
+      <StatusPanel attemptsLeft={state.attemptsLeft} coins={state.coins} />
 
-      <section className="container">
-        {state.secret.map((num, i) => (
-          <Card
-            key={`card-${i}`}
-            value={num}
-            revealed={state.guesses.some((guess) => guess.feedback[i] === "correct")}
-          />
-        ))}
-      </section>
+      <CardList revealed={state.revealed} />
 
       {!state.isGameOver && (
         <>
@@ -67,11 +39,11 @@ const App: React.FC = () => {
       <GameBoard guesses={state.guesses} />
 
       {state.isGameOver && (
-        <section>
-          <h2>{state.win ? "🎉 You Win!" : "💀 Game Over"}</h2>
-          <p className="mb-1">The correct numbers were: {state.secret.join(", ")}</p>
-          <button onClick={handleReset}>Play Again</button>
-        </section>
+        <GameResult
+          win={state.win}
+          secret={state.secret}
+          onReset={handleReset}
+        />
       )}
     </main>
   );
