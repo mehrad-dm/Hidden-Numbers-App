@@ -6,12 +6,13 @@ export interface Guess {
 }
 
 export interface GameState {
-  secret: number[];
-  guesses: Guess[];
   attemptsLeft: number;
-  isGameOver: boolean;
-  win: boolean;
   coins: number;
+  guesses: Guess[];
+  isGameOver: boolean;
+  revealed: (number | null)[];
+  secret: number[];
+  win: boolean;
 }
 
 export type GameAction =
