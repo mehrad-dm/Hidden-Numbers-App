@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./inputRow.module.scss";
 
 interface InputRowProps {
@@ -6,7 +5,7 @@ interface InputRowProps {
   onChange: (value: number, index: number) => void;
 }
 
-export const InputRow: React.FC<InputRowProps> = ({ guess, onChange }) => {
+export const InputRow = ({ guess, onChange }: InputRowProps) => {
   return (
     <div className={styles.inputRow}>
       {guess.map((num, index) => (

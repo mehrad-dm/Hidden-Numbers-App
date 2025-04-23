@@ -1,6 +1,6 @@
-import winSound from "../../assets/sounds/win.wav";
-import failSound from "../../assets/sounds/fail.wav";
-import clickSound from "../../assets/sounds/click.wav";
+import winSound from "@/assets/sounds/win.wav";
+import failSound from "@/assets/sounds/fail.wav";
+import clickSound from "@/assets/sounds/click.wav";
 
 const sounds = {
   win: new Audio(winSound),

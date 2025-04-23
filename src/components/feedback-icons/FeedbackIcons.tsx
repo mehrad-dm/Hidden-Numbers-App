@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./feedbackIcons.module.scss";
 import { FeedbackType } from "@/types";
 
@@ -12,7 +11,7 @@ const iconMap: Record<FeedbackType, string> = {
   wrong: "❌",
 };
 
-export const FeedbackIcons: React.FC<FeedbackIconsProps> = ({ feedback }) => {
+export const FeedbackIcons = ({ feedback }: FeedbackIconsProps) => {
   return (
     <div className={styles.feedbackRow}>
       {feedback.map((type, index) => (

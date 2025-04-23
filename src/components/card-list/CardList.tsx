@@ -1,11 +1,10 @@
-import React from "react";
 import { Card } from "../card/Card";
 
 interface CardListProps {
   revealed: (number | null)[];
 }
 
-export const CardList: React.FC<CardListProps> = ({ revealed }) => {
+export const CardList = ({ revealed }: CardListProps) => {
   return (
     <section className="container">
       {revealed.map((num, i) => (

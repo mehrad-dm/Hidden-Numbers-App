@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./card.module.scss";
 
 export interface CardProps {
@@ -6,7 +5,7 @@ export interface CardProps {
   revealed: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ number, revealed }) => {
+export const Card = ({ number, revealed }: CardProps) => {
   return (
     <div className={`${styles.card} ${revealed ? styles.revealed : ""}`}>
       {revealed ? number : "?"}
