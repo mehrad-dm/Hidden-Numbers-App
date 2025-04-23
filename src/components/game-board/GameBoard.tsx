@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./gameBoard.module.scss";
-import { Guess } from "../../types";
+import { Guess } from "@/types";
 import { FeedbackIcons } from "../feedback-icons";
 
 interface GameBoardProps {
