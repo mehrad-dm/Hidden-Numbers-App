@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./gameBoard.module.scss";
 import { Guess } from "@/types";
 import { FeedbackIcons } from "../feedback-icons";
@@ -7,7 +6,7 @@ interface GameBoardProps {
   guesses: Guess[];
 }
 
-export const GameBoard: React.FC<GameBoardProps> = ({ guesses }) => {
+export const GameBoard = ({ guesses }: GameBoardProps) => {
   return (
     <div className={styles.board}>
       {guesses.map((guess, index) => (

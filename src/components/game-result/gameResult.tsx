@@ -1,16 +1,10 @@
-import React from "react";
-
 interface GameResultProps {
   win: boolean;
   secret: number[];
   onReset: () => void;
 }
 
-export const GameResult: React.FC<GameResultProps> = ({
-  win,
-  secret,
-  onReset,
-}) => {
+export const GameResult = ({ win, secret, onReset }: GameResultProps) => {
   return (
     <section>
       <h2>{win ? "🎉 You Win!" : "💀 Game Over"}</h2>
