@@ -1,23 +1,11 @@
-import React, { useReducer } from "react";
-import {
-  CardList,
-  InputRow,
-  GameBoard,
-  StatusPanel,
-  GameResult,
-} from "./components";
+import { useReducer } from "react";
+import { CardList, InputRow, GameBoard, StatusPanel, GameResult } from "./components";
 import { gameReducer, initialGameState } from "./reducers/gameReducer";
 import { useGameControls } from "./hooks";
 
-const App: React.FC = () => {
-  const [state, dispatch] = useReducer(
-    gameReducer,
-    undefined,
-    initialGameState,
-  );
-
-  const { currentGuess, handleInputChange, handleSubmit, handleReset } =
-    useGameControls(state, dispatch);
+const App = () => {
+  const [state, dispatch] = useReducer(gameReducer, undefined, initialGameState);
+  const { currentGuess, handleInputChange, handleSubmit, handleReset } = useGameControls(state, dispatch);
 
   return (
     <main className="text-center">
