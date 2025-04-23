@@ -1,13 +1,9 @@
-import { GameState, GameAction, Guess } from "../types";
-import {
-  evaluateGuess,
-  generateSecret,
-  getFromStorage,
-  setInStorage,
-} from "../utils";
+import { GameState, GameAction, Guess } from "@/types";
+import { evaluateGuess, generateSecret, getFromStorage, setInStorage, calculateCoins } from "../utils";
 
 const COIN_KEY = "totalCoins";
 
+// Initial game state
 export const initialGameState = (): GameState => ({
   secret: generateSecret(),
   guesses: [],
@@ -18,17 +14,14 @@ export const initialGameState = (): GameState => ({
   coins: getFromStorage<number>(COIN_KEY, 0),
 });
 
-export const gameReducer = (
-  state: GameState,
-  action: GameAction,
-): GameState => {
+// Reducer to handle game actions
+export const gameReducer = (state: GameState, action: GameAction): GameState => {
   switch (action.type) {
     case "MAKE_GUESS": {
       if (state.isGameOver) return state;
 
       const guess = action.payload;
       const feedback = evaluateGuess(guess, state.secret);
-
       const newGuess: Guess = { numbers: guess, feedback };
       const updatedGuesses = [...state.guesses, newGuess];
 
@@ -40,11 +33,19 @@ export const gameReducer = (
       const win = feedback.every((f) => f === "correct");
       const attemptsLeft = state.attemptsLeft - 1;
 
-      let coinsEarned = 0;
-      const correctCount = feedback.filter((f) => f === "correct").length;
-      if (win) coinsEarned = 50;
-      else if (correctCount === 2) coinsEarned = 20;
+      const isGameOver = win || attemptsLeft === 0;
 
+      const correctGuessesSet = new Set<number>();
+
+      updatedGuesses.forEach((guess) => {
+        guess.feedback.forEach((f, i) => {
+          if (f === "correct") {
+            correctGuessesSet.add(guess.numbers[i]);
+          }
+        });
+      });
+
+      const coinsEarned = calculateCoins(correctGuessesSet, isGameOver);
       const newTotalCoins = state.coins + coinsEarned;
       setInStorage(COIN_KEY, newTotalCoins);
 
@@ -53,7 +54,7 @@ export const gameReducer = (
         guesses: updatedGuesses,
         revealed: updatedRevealed,
         attemptsLeft,
-        isGameOver: win || attemptsLeft === 0,
+        isGameOver,
         win,
         coins: newTotalCoins,
       };
